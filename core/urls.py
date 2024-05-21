@@ -9,6 +9,8 @@ urlpatterns = [
     path("", include("products.urls")),
     path("", include("users.urls")),
     path('', include('customer.urls')),
+    path('api/v1/', include('rest_api.urls')),
+
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

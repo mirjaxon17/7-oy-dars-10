@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid pt-5 pb-3">
+    <ul style="display: flex; gap: 50px;">
+        <div class="card" style="width: 18rem;">
+            <form method="POST">
+    
+            {% csrf_token %}
+            <label for="product_name"></label>
+            <input id="product_name" placeholder="First_name" name="name" value="{{product.name}}"><br>
+    
+            <label for="price"></label>
+            <input id="price" placeholder="price" type="number" name="price" value="{{product.price}}"><br>
+    
+            <button type="submit" class="btn btn-secondary btn-sm">UPDATE</button>
+            </form>
+        </div>
+    </ul>
+
+</div>
+
+
+{% endblock %}

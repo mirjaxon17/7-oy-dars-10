@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     'products',
     'shop',
     'customer',
+    'rest_api',
     #import-export
     'import_export',
+    'drf_yasg',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="{% url 'home' %}">Home</a>
+                <a class="breadcrumb-item text-dark" href="{% url 'cart' %}">Shop</a>
+                <span class="breadcrumb-item active">Shopping Cart</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Add to card</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    {% for corzine in corzines %}
+                    <tr>
+                        <td class="align-middle"><img src="{{corzine.name.image.url}}" alt=""
+                                style="width: 50px;">{{corzine.name}}</td>
+                        <td class="align-middle">{{corzine.name.price_type}}{{corzine.name.price}}</td>
+                        <td class="align-middle">
+                            <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input name="favorite" type="hidden" value="fxfgcghvhjb">
+                                    <input name="product_name" type="hidden" value="{{corzine.name}}">
+                                    <input name="username" type="hidden" value="{{user.username}}">
+                                    <button class="btn btn-outline-dark btn-square" type="submit">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </td>
+                        <td class="align-middle">$150</td>
+                        <td class="align-middle">
+                            <a href="{% url 'favorite-delete' corzine.id %}"><button class="btn btn-sm btn-danger"><i
+                                        class="fa fa-times"></i></button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <form class="mb-30" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                </div>
+            </form>
+            <div class="bg-light p-30 mb-5">
+                <div class="pt-2">  
+                    <a href="{% url 'cart' %}">
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tap to Cart</button>
+                            
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->
+{% endblock %}
